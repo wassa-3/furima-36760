@@ -1,4 +1,4 @@
-class Pay_by < ActiveHash::Base
+class PayBy < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '着払い(購入者負担)' },
