@@ -9,6 +9,7 @@ class OrderAddress
     validates :address_line
     validates :address_number
     validates :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: 'is invalid'}
+    validates :token
   end
   validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
 
