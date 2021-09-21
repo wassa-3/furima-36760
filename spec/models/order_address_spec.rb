@@ -17,11 +17,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.building = ''
         expect(@order_address).to be_valid
       end
-      it 'phone_numberは10文字以上であれば購入できる' do
+      it 'phone_numberは10桁以上であれば購入できる' do
         @order_address.phone_number = '0123456789'
         expect(@order_address).to be_valid
       end
-      it 'phone_numberは11文字以下であれば購入できる' do
+      it 'phone_numberは11桁以下であれば購入できる' do
         @order_address.phone_number = '01234567890'
         expect(@order_address).to be_valid
       end
@@ -58,8 +58,13 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが9文字以下では購入できない' do
+      it 'phone_numberが9桁以下では購入できない' do
         @order_address.phone_number = '012345678'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is too short')
+      end
+      it 'phone_numberが12桁以上では購入できない' do
+        @order_address.phone_number = '012345678901'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is too short')
       end
